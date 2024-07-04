@@ -1,0 +1,31 @@
+name: Conan stdout bug
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Conan
+      run: pip install conan
+    
+    - name: Detect Profile
+      run: conan profile detect --force
+
+    - name: Build
+      run: ${{github.workspace}}/Build.bat
+
+    - name: Run conan list boost --format=compact
+      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan list boost --format=compact
+
+    - name: Run conan list boost --format=json
+      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan list boost --format=json
+
+    - name: Run conan search boost --format=json
+      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan search boost --format=json
+
