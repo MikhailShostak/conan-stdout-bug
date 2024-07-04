@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     boost::process::child c(cmd
         , boost::process::std_out > pipe_out_stream
         // Uncommenting this line fixed the bug
-        //, boost::process::std_err > pipe_err_stream
+        , boost::process::std_err > pipe_err_stream
     );
     
     std::string line;

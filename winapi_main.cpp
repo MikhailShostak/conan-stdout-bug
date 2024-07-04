@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     si.hStdOutput = g_hChildStd_OUT_Wr;
 
     // Uncommenting this line fixed the bug
-    //si.hStdError = g_hChildStd_OUT_Wr; 
+    si.hStdError = g_hChildStd_OUT_Wr; 
 
     if (!CreateProcess(NULL, const_cast<LPSTR>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi))
     {
