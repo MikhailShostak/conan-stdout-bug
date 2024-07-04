@@ -20,12 +20,21 @@ jobs:
     - name: Build
       run: ${{github.workspace}}/Build.bat
 
-    - name: Run conan list boost --format=compact
-      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan list boost --format=compact
+    - name: (Boost) Run conan list boost --format=compact
+      run: ${{github.workspace}}/Build/Release/Boost_Wrapper.exe conan list boost --format=compact
 
-    - name: Run conan list boost --format=json
-      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan list boost --format=json
+    - name: (Boost) Run conan list boost --format=json
+      run: ${{github.workspace}}/Build/Release/Boost_Wrapper.exe conan list boost --format=json
 
-    - name: Run conan search boost --format=json
-      run: ${{github.workspace}}/Build/Release/Wrapper.exe conan search boost --format=json
+    - name: (Boost) Run conan search boost --format=json
+      run: ${{github.workspace}}/Build/Release/Boost_Wrapper.exe conan search boost --format=json
+
+    - name: (WinAPI) Run conan list boost --format=compact
+      run: ${{github.workspace}}/Build/Release/WinAPI_Wrapper.exe conan list boost --format=compact
+
+    - name: (WinAPI) Run conan list boost --format=json
+      run: ${{github.workspace}}/Build/Release/WinAPI_Wrapper.exe conan list boost --format=json
+
+    - name: (WinAPI) Run conan search boost --format=json
+      run: ${{github.workspace}}/Build/Release/WinAPI_Wrapper.exe conan search boost --format=json
 

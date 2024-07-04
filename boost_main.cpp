@@ -15,11 +15,16 @@ int main(int argc, char *argv[])
         cmd += argv[i];
     }
 
-    boost::process::ipstream pipe_stream;
-    boost::process::child c(cmd, boost::process::std_out > pipe_stream);
+    boost::process::ipstream pipe_out_stream;
+    boost::process::ipstream pipe_err_stream;
+    boost::process::child c(cmd
+        , boost::process::std_out > pipe_out_stream
+        // Uncommenting this line fixed the bug
+        //, boost::process::std_err > pipe_err_stream
+    );
     
     std::string line;
-    while (pipe_stream && std::getline(pipe_stream, line) && !line.empty())
+    while (pipe_out_stream && std::getline(pipe_out_stream, line) && !line.empty())
     {
         std::cout << line << std::endl;
     }
